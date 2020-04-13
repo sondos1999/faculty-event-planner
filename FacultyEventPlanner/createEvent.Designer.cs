@@ -195,6 +195,7 @@
             this.Controls.Add(this.titleTxt);
             this.Name = "createEvent";
             this.Text = "createEvent";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.createEvent_FormClosed);
             this.Load += new System.EventHandler(this.createEvent_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

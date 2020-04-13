@@ -1,0 +1,48 @@
+create or replace
+procedure IsTitleUnique
+( ETitle in event.title%TYPE, RET out number)
+as
+r event.capacity%type;
+begin
+select capacity into r from event where title = etitle and request_status not like 'Rejected';
+RET:=0;
+exception 
+    when no_data_found then
+    RET :=1;
+end;
+
+create or replace
+PROCEDURE Insert_Event
+(t in event.title% TYPE, cap in event.capacity%TYPE,
+des in event.description% TYPE, ln in event.l_name% TYPE,
+st in event.ls_start_time% TYPE, et in locations_schedule.end_time% TYPE,
+ld in event.ls_date% TYPE, did in event.d_id% TYPE,
+hst in host.user_name% TYPE)
+
+as
+begin
+update locations_schedule
+set status = 'Reserved'
+where start_time = st
+and end_time = et
+and date_ = ld
+and l_name=ld;
+
+insert into event
+(title, capacity, description, request_status, l_name, ls_start_time,
+ls_date, d_id) 
+values (t, cap, des, 'pending', ln, st, ld, did);
+
+insert into host
+values(t, hst);
+end;
+
+create or replace PROCEDURE Add_Host
+(t in event.title% TYPE,
+hst in host.user_name% TYPE)
+
+as
+begin
+insert into host
+values(t, hst);
+end;

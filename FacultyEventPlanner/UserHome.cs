@@ -97,5 +97,10 @@ namespace FacultyEventPlanner
             c.Closed += (s, args) => this.Close();
             c.Show();
         }
+
+        private void UserHome_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            OracleHelper.closeConnection();
+        }
     }
 }

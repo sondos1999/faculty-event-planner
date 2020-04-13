@@ -17,7 +17,8 @@ namespace FacultyEventPlanner
     {
         OracleDataReader depDR;
         OracleDataReader userDR;
-        ArrayList dates, startTimes, endTimes;
+        ArrayList dates, startTimes, endTimes, dids;
+        Dictionary<string, string> usernames;
         public createEvent()
         {
             InitializeComponent();
@@ -25,6 +26,8 @@ namespace FacultyEventPlanner
 
         private void createEvent_Load(object sender, EventArgs e)
         {
+            dids = new ArrayList();
+            usernames = new Dictionary<string, string>();
             #region location combo box
             OracleCommand loc = new OracleCommand();
             loc.Connection = OracleHelper.getConnection();
@@ -35,6 +38,7 @@ namespace FacultyEventPlanner
             {
                 locCB.Items.Add(locDR[0]);
             }
+            locDR.Close();
             #endregion
 
             #region depCB
@@ -46,7 +50,9 @@ namespace FacultyEventPlanner
             while (depDR.Read())
             {
                 depCB.Items.Add(depDR[1]);
+                dids.Add(depDR[0]);
             }
+            depDR.Close();
             #endregion
 
             #region userCB
@@ -58,7 +64,9 @@ namespace FacultyEventPlanner
             while (userDR.Read())
             {
                 hostCLB.Items.Add(userDR[0]+" "+userDR[1]);
+                usernames[userDR[0] + " " + userDR[1]] = userDR[2].ToString();
             }
+            userDR.Close();
             #endregion
 
         }
@@ -67,17 +75,103 @@ namespace FacultyEventPlanner
         {
         }
 
+        private void createEvent_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            OracleHelper.closeConnection();
+        }
+
         private void btn_Click(object sender, EventArgs e)
         {
+            //event title is not empty
+            if(titleTxt.Text.Length==0)
+            {
+                MessageBox.Show("Title is empty! Please enter a title...", "Warning");
+                return;
+            }
+            //event title is unique
+            OracleCommand title = new OracleCommand();
+            title.Connection = OracleHelper.getConnection();
+            title.CommandText = "IsTitleUnique";
+            title.CommandType = CommandType.StoredProcedure;
+            title.Parameters.Add("title", titleTxt.Text);
+            int ret;
+            title.Parameters.Add("ret", OracleDbType.Int32, ParameterDirection.Output);
+            title.ExecuteNonQuery();
+
+            //description is not empty
+            if (descriptionTxt.Text.Length == 0)
+            {
+                MessageBox.Show("Description is empty! Please enter a description...", "Warning");
+                return;
+            }
+
+            //capacity is not empty
+            if (capTxt.Text.Length == 0)
+            {
+                MessageBox.Show("Capacity is empty! Please enter a capacity...", "Warning");
+                return;
+            }
+
+            //if(locCB.SelectedIndex > -1 || timeCB.SelectedIndex > -1 || depCB.SelectedIndex > -1)
+            //{
+            //    MessageBox.Show("Please do not leave empty fields..", "Warning");
+            //    return;
+            //}
+
             try
             {
-                //event title is unique
-
+                ret = int.Parse(title.Parameters["ret"].Value.ToString());
+                if (ret == 0)
+                {
+                    MessageBox.Show("Title is not unique!", "Warning");
+                    return;
+                }
                 int x = int.Parse(capTxt.Text);
             }catch(Exception ex)
             {
                 MessageBox.Show("Please enter number in capacity...", "Warning");
             }
+
+
+            //insert event
+            OracleCommand insEvent = new OracleCommand();
+            insEvent.Connection = OracleHelper.getConnection();
+            insEvent.CommandText = "Insert_Event";
+            insEvent.CommandType = CommandType.StoredProcedure;
+            insEvent.Parameters.Add("t", titleTxt.Text);
+            insEvent.Parameters.Add("cap", capTxt.Text);
+            insEvent.Parameters.Add("des", descriptionTxt.Text);
+            insEvent.Parameters.Add("ln", locCB.SelectedItem.ToString());
+            int tIndx = timeCB.SelectedIndex;
+            insEvent.Parameters.Add("st", startTimes[tIndx]);
+            insEvent.Parameters.Add("et", endTimes[tIndx]);
+            insEvent.Parameters.Add("ld", dates[tIndx]);
+            insEvent.Parameters.Add("did", dids[depCB.SelectedIndex]);
+            insEvent.Parameters.Add("hst", "HT_2000"); //TODO change to logged in user
+            insEvent.ExecuteNonQuery();
+
+            //insert hosts
+            if (hostCLB.CheckedItems.Count > 0)
+            {
+                for(int i =0; i< hostCLB.CheckedItems.Count; i++)
+                {
+                    OracleCommand addHost = new OracleCommand();
+                    addHost.Connection = OracleHelper.getConnection();
+                    addHost.CommandText = "Add_Host";
+                    addHost.CommandType = CommandType.StoredProcedure;
+                    addHost.Parameters.Add("t", titleTxt.Text);
+                    addHost.Parameters.Add("hst", usernames[hostCLB.CheckedItems[i].ToString()]);
+                    addHost.ExecuteNonQuery();
+                }
+                
+            }
+
+            MessageBox.Show("Event successfully created!", "Success");
+            titleTxt.Clear();
+            descriptionTxt.Clear();
+            capTxt.Clear();
+            hostCLB.ClearSelected();
+
 
         }
 
@@ -105,6 +199,7 @@ namespace FacultyEventPlanner
                 startTimes.Add(locDR[1]);
                 endTimes.Add(locDR[2]);
             }
+            locDR.Close();
         }
     }
 }

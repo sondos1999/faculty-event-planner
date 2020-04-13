@@ -60,7 +60,7 @@
             this.menuToolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1058, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1058, 30);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -73,7 +73,7 @@
             this.myRequestsToolStripMenuItem,
             this.myViolationsToolStripMenuItem});
             this.menuToolStripMenuItem1.Name = "menuToolStripMenuItem1";
-            this.menuToolStripMenuItem1.Size = new System.Drawing.Size(60, 24);
+            this.menuToolStripMenuItem1.Size = new System.Drawing.Size(60, 26);
             this.menuToolStripMenuItem1.Text = "Menu";
             // 
             // myAccountToolStripMenuItem
@@ -151,6 +151,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "UserHome";
             this.Text = "UserHome";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.UserHome_FormClosed);
             this.Load += new System.EventHandler(this.UserHome_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

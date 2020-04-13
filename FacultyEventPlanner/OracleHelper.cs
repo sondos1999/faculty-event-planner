@@ -12,7 +12,6 @@ namespace FacultyEventPlanner
     {
         private static OracleConnection conn;
         static string constr = "Data Source=orcl; User Id=hr;Password=hr;";
-        //git comment
         public static OracleConnection getConnection()
         {
             if (conn == null)
@@ -21,6 +20,12 @@ namespace FacultyEventPlanner
                 conn.Open();
             }
             return conn;
+        }
+
+        public static void closeConnection()
+        {
+            if (conn != null)
+                conn.Close();
         }
     }
 }
