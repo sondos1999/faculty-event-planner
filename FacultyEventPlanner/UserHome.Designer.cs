@@ -60,7 +60,7 @@
             this.menuToolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1058, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1058, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -73,31 +73,32 @@
             this.myRequestsToolStripMenuItem,
             this.myViolationsToolStripMenuItem});
             this.menuToolStripMenuItem1.Name = "menuToolStripMenuItem1";
-            this.menuToolStripMenuItem1.Size = new System.Drawing.Size(60, 26);
+            this.menuToolStripMenuItem1.Size = new System.Drawing.Size(60, 24);
             this.menuToolStripMenuItem1.Text = "Menu";
             // 
             // myAccountToolStripMenuItem
             // 
             this.myAccountToolStripMenuItem.Name = "myAccountToolStripMenuItem";
-            this.myAccountToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.myAccountToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.myAccountToolStripMenuItem.Text = "My account";
             // 
             // myEventsToolStripMenuItem
             // 
             this.myEventsToolStripMenuItem.Name = "myEventsToolStripMenuItem";
-            this.myEventsToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.myEventsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.myEventsToolStripMenuItem.Text = "My events";
+            this.myEventsToolStripMenuItem.Click += new System.EventHandler(this.myEventsToolStripMenuItem_Click);
             // 
             // myRequestsToolStripMenuItem
             // 
             this.myRequestsToolStripMenuItem.Name = "myRequestsToolStripMenuItem";
-            this.myRequestsToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.myRequestsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.myRequestsToolStripMenuItem.Text = "My requests";
             // 
             // myViolationsToolStripMenuItem
             // 
             this.myViolationsToolStripMenuItem.Name = "myViolationsToolStripMenuItem";
-            this.myViolationsToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.myViolationsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.myViolationsToolStripMenuItem.Text = "My violations";
             // 
             // eventsDGV

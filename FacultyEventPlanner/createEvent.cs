@@ -36,7 +36,7 @@ namespace FacultyEventPlanner
             OracleDataReader locDR = loc.ExecuteReader();
             while (locDR.Read())
             {
-                locCB.Items.Add(locDR[0]);
+                locCB.Items.Add(locDR[0].ToString());
             }
             locDR.Close();
             #endregion
@@ -143,9 +143,9 @@ namespace FacultyEventPlanner
             insEvent.Parameters.Add("des", descriptionTxt.Text);
             insEvent.Parameters.Add("ln", locCB.SelectedItem.ToString());
             int tIndx = timeCB.SelectedIndex;
-            insEvent.Parameters.Add("st", startTimes[tIndx]);
-            insEvent.Parameters.Add("et", endTimes[tIndx]);
-            insEvent.Parameters.Add("ld", dates[tIndx]);
+            insEvent.Parameters.Add("st", startTimes[tIndx].ToString());
+            insEvent.Parameters.Add("et", endTimes[tIndx].ToString());
+            insEvent.Parameters.Add("ld", dates[tIndx].ToString().ToUpper());
             insEvent.Parameters.Add("did", dids[depCB.SelectedIndex]);
             insEvent.Parameters.Add("hst", "HT_2000"); //TODO change to logged in user
             insEvent.ExecuteNonQuery();

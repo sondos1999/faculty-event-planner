@@ -1,5 +1,4 @@
-create or replace
-procedure IsTitleUnique
+create or replace procedure IsTitleUnique
 ( ETitle in event.title%TYPE, RET out number)
 as
 r event.capacity%type;
@@ -11,8 +10,7 @@ exception
     RET :=1;
 end;
 
-create or replace
-PROCEDURE Insert_Event
+create or replace PROCEDURE Insert_Event
 (t in event.title% TYPE, cap in event.capacity%TYPE,
 des in event.description% TYPE, ln in event.l_name% TYPE,
 st in event.ls_start_time% TYPE, et in locations_schedule.end_time% TYPE,
@@ -26,7 +24,7 @@ set status = 'Reserved'
 where start_time = st
 and end_time = et
 and date_ = ld
-and l_name=ld;
+and l_name=ln;
 
 insert into event
 (title, capacity, description, request_status, l_name, ls_start_time,
@@ -37,7 +35,8 @@ insert into host
 values(t, hst);
 end;
 
-create or replace PROCEDURE Add_Host
+create or replace
+PROCEDURE Add_Host
 (t in event.title% TYPE,
 hst in host.user_name% TYPE)
 
@@ -45,4 +44,41 @@ as
 begin
 insert into host
 values(t, hst);
+end;
+
+
+create or replace PROCEDURE GetEvents
+(ALLEVENTS out sys_refcursor,
+hst in host.user_name% TYPE)
+
+as
+begin
+open allevents for
+select event.title, event.request_status, event.capacity, event.description, event.l_name, event.ls_start_time,
+event.ls_date, department.d_title, locations_schedule.end_time
+from event, host, department, locations_schedule
+where event.d_id = department.d_id
+and event.title = host.e_title
+and host.user_name = hst
+and event.ls_start_time= locations_schedule.start_time
+and event.ls_date = locations_schedule.date_
+and event.l_name = locations_schedule.l_name;
+
+end;
+
+
+
+create or replace procedure DeleteEvent
+(t event.title%TYPE)
+as
+begin
+delete from host where e_title = t;
+delete from violations where e_title = t;
+update locations_schedule
+set status = 'Available'
+where start_time = (select ls_start_time from event where title=t)
+and date_ = (select ls_date from event where title = t)
+and l_name = (select l_name from event where title=t);
+delete from event where title = t;
+
 end;

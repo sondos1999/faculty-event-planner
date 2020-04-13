@@ -11,3 +11,4 @@ F:\Code\Projects\FacultyEventPlanner\FacultyEventPlanner\FacultyEventPlanner\bin
 F:\Code\Projects\FacultyEventPlanner\FacultyEventPlanner\FacultyEventPlanner\obj\Debug\FacultyEventPlanner.UserHome.resources
 F:\Code\Projects\FacultyEventPlanner\FacultyEventPlanner\FacultyEventPlanner\obj\Debug\FacultyEventPlanner.csproj.CopyComplete
 F:\Code\Projects\FacultyEventPlanner\FacultyEventPlanner\FacultyEventPlanner\obj\Debug\FacultyEventPlanner.createEvent.resources
+F:\Code\Projects\FacultyEventPlanner\FacultyEventPlanner\FacultyEventPlanner\obj\Debug\FacultyEventPlanner.MyEvents.resources

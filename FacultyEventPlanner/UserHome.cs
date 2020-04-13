@@ -102,5 +102,13 @@ namespace FacultyEventPlanner
         {
             OracleHelper.closeConnection();
         }
+
+        private void myEventsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            MyEvents c = new MyEvents();
+            c.Closed += (s, args) => this.Close();
+            c.Show();
+        }
     }
 }
