@@ -96,6 +96,8 @@ namespace FacultyEventPlanner
             createEvent c = new createEvent();
             c.Closed += (s, args) => this.Close();
             c.Show();
+            //hiiiiii
+
         }
 
         private void UserHome_FormClosed(object sender, FormClosedEventArgs e)
