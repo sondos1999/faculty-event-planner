@@ -82,3 +82,36 @@ and l_name = (select l_name from event where title=t);
 delete from event where title = t;
 
 end;
+
+create or replace
+procedure Update_Event
+(t in event.title% TYPE, cap in event.capacity%TYPE,
+des in event.description% TYPE, ln in event.l_name% TYPE,
+st in event.ls_start_time% TYPE,
+ld in event.ls_date% TYPE, did in event.d_id% TYPE)
+as
+begin
+
+update locations_schedule
+set status = 'Available'
+where start_time = (select ls_start_time from event where title = t)
+and date_ = (select ls_date from event where title = t)
+and l_name= (select l_name from event where title = t);
+
+update locations_schedule
+set status = 'Reserved'
+where start_time = st
+and date_ = ld
+and l_name= ln;
+
+update event
+set request_status = 'pending',
+capacity = cap,
+description = des,
+l_name = ln,
+ls_start_time = st,
+ls_date = ld, 
+d_id = did
+where title = t;
+
+end;

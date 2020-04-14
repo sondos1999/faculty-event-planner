@@ -76,9 +76,7 @@ namespace FacultyEventPlanner
                 AND title = e_title
                 AND event.d_id =  department.d_id";
                 cmdstr += " and event.d_id = " + d;
-                StreamWriter s = new StreamWriter(new FileStream("dep.txt", FileMode.Append));
-                s.WriteLine(cmdstr);
-                s.Close();
+                
                 adapter = new OracleDataAdapter(cmdstr, constr);
                 adapter.Fill(ds, d);
                 eventsDGV.DataSource = ds.Tables[d];
@@ -96,7 +94,6 @@ namespace FacultyEventPlanner
             createEvent c = new createEvent();
             c.Closed += (s, args) => this.Close();
             c.Show();
-            //hiiiiii
 
         }
 

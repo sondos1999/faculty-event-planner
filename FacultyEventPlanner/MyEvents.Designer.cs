@@ -30,15 +30,11 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.eventsPanel = new System.Windows.Forms.Panel();
-            this.eventsCLB = new System.Windows.Forms.CheckedListBox();
-            this.editBtn = new System.Windows.Forms.Button();
-            this.delBtn = new System.Windows.Forms.Button();
             this.editPanel = new System.Windows.Forms.Panel();
+            this.saveEditBtn = new System.Windows.Forms.Button();
             this.timeCB = new System.Windows.Forms.ComboBox();
             this.locCB = new System.Windows.Forms.ComboBox();
-            this.hostCLB = new System.Windows.Forms.CheckedListBox();
             this.depCB = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.Time = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -48,7 +44,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.titleTxt = new System.Windows.Forms.TextBox();
-            this.saveEditBtn = new System.Windows.Forms.Button();
+            this.delBtn = new System.Windows.Forms.Button();
+            this.editBtn = new System.Windows.Forms.Button();
+            this.eventsCLB = new System.Windows.Forms.CheckedListBox();
+            this.cancelBtn = new System.Windows.Forms.Button();
             this.eventsPanel.SuspendLayout();
             this.editPanel.SuspendLayout();
             this.SuspendLayout();
@@ -64,7 +63,6 @@
             // 
             // eventsPanel
             // 
-            this.eventsPanel.Controls.Add(this.editPanel);
             this.eventsPanel.Controls.Add(this.delBtn);
             this.eventsPanel.Controls.Add(this.editBtn);
             this.eventsPanel.Controls.Add(this.eventsCLB);
@@ -73,41 +71,13 @@
             this.eventsPanel.Size = new System.Drawing.Size(959, 598);
             this.eventsPanel.TabIndex = 1;
             // 
-            // eventsCLB
-            // 
-            this.eventsCLB.FormattingEnabled = true;
-            this.eventsCLB.Location = new System.Drawing.Point(18, 4);
-            this.eventsCLB.Name = "eventsCLB";
-            this.eventsCLB.Size = new System.Drawing.Size(679, 242);
-            this.eventsCLB.TabIndex = 0;
-            // 
-            // editBtn
-            // 
-            this.editBtn.Location = new System.Drawing.Point(18, 279);
-            this.editBtn.Name = "editBtn";
-            this.editBtn.Size = new System.Drawing.Size(188, 56);
-            this.editBtn.TabIndex = 1;
-            this.editBtn.Text = "edit";
-            this.editBtn.UseVisualStyleBackColor = true;
-            // 
-            // delBtn
-            // 
-            this.delBtn.Location = new System.Drawing.Point(236, 279);
-            this.delBtn.Name = "delBtn";
-            this.delBtn.Size = new System.Drawing.Size(188, 56);
-            this.delBtn.TabIndex = 2;
-            this.delBtn.Text = "delete";
-            this.delBtn.UseVisualStyleBackColor = true;
-            this.delBtn.Click += new System.EventHandler(this.delBtn_Click);
-            // 
             // editPanel
             // 
+            this.editPanel.Controls.Add(this.cancelBtn);
             this.editPanel.Controls.Add(this.saveEditBtn);
             this.editPanel.Controls.Add(this.timeCB);
             this.editPanel.Controls.Add(this.locCB);
-            this.editPanel.Controls.Add(this.hostCLB);
             this.editPanel.Controls.Add(this.depCB);
-            this.editPanel.Controls.Add(this.label8);
             this.editPanel.Controls.Add(this.label7);
             this.editPanel.Controls.Add(this.Time);
             this.editPanel.Controls.Add(this.label3);
@@ -117,11 +87,21 @@
             this.editPanel.Controls.Add(this.label2);
             this.editPanel.Controls.Add(this.label4);
             this.editPanel.Controls.Add(this.titleTxt);
-            this.editPanel.Location = new System.Drawing.Point(832, 516);
+            this.editPanel.Location = new System.Drawing.Point(45, 72);
             this.editPanel.Name = "editPanel";
             this.editPanel.Size = new System.Drawing.Size(956, 598);
             this.editPanel.TabIndex = 2;
             this.editPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // saveEditBtn
+            // 
+            this.saveEditBtn.Location = new System.Drawing.Point(472, 427);
+            this.saveEditBtn.Name = "saveEditBtn";
+            this.saveEditBtn.Size = new System.Drawing.Size(213, 58);
+            this.saveEditBtn.TabIndex = 40;
+            this.saveEditBtn.Text = "save edit and send request";
+            this.saveEditBtn.UseVisualStyleBackColor = true;
+            this.saveEditBtn.Click += new System.EventHandler(this.saveEditBtn_Click);
             // 
             // timeCB
             // 
@@ -130,6 +110,7 @@
             this.timeCB.Name = "timeCB";
             this.timeCB.Size = new System.Drawing.Size(466, 24);
             this.timeCB.TabIndex = 39;
+            this.timeCB.SelectedIndexChanged += new System.EventHandler(this.timeCB_SelectedIndexChanged);
             // 
             // locCB
             // 
@@ -140,35 +121,18 @@
             this.locCB.TabIndex = 38;
             this.locCB.SelectedIndexChanged += new System.EventHandler(this.locCB_SelectedIndexChanged);
             // 
-            // hostCLB
-            // 
-            this.hostCLB.FormattingEnabled = true;
-            this.hostCLB.Location = new System.Drawing.Point(219, 384);
-            this.hostCLB.Name = "hostCLB";
-            this.hostCLB.Size = new System.Drawing.Size(466, 72);
-            this.hostCLB.TabIndex = 37;
-            // 
             // depCB
             // 
             this.depCB.FormattingEnabled = true;
-            this.depCB.Location = new System.Drawing.Point(219, 346);
+            this.depCB.Location = new System.Drawing.Point(219, 279);
             this.depCB.Name = "depCB";
             this.depCB.Size = new System.Drawing.Size(466, 24);
             this.depCB.TabIndex = 36;
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(72, 384);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(57, 17);
-            this.label8.TabIndex = 35;
-            this.label8.Text = "Co-host";
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(72, 349);
+            this.label7.Location = new System.Drawing.Point(69, 279);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(82, 17);
             this.label7.TabIndex = 34;
@@ -237,23 +201,54 @@
             // 
             this.titleTxt.Location = new System.Drawing.Point(219, 38);
             this.titleTxt.Name = "titleTxt";
+            this.titleTxt.ReadOnly = true;
             this.titleTxt.Size = new System.Drawing.Size(466, 22);
             this.titleTxt.TabIndex = 26;
             // 
-            // saveEditBtn
+            // delBtn
             // 
-            this.saveEditBtn.Location = new System.Drawing.Point(472, 507);
-            this.saveEditBtn.Name = "saveEditBtn";
-            this.saveEditBtn.Size = new System.Drawing.Size(213, 58);
-            this.saveEditBtn.TabIndex = 40;
-            this.saveEditBtn.Text = "save edit and send request";
-            this.saveEditBtn.UseVisualStyleBackColor = true;
+            this.delBtn.Location = new System.Drawing.Point(236, 279);
+            this.delBtn.Name = "delBtn";
+            this.delBtn.Size = new System.Drawing.Size(188, 56);
+            this.delBtn.TabIndex = 2;
+            this.delBtn.Text = "delete";
+            this.delBtn.UseVisualStyleBackColor = true;
+            this.delBtn.Click += new System.EventHandler(this.delBtn_Click);
+            // 
+            // editBtn
+            // 
+            this.editBtn.Location = new System.Drawing.Point(18, 279);
+            this.editBtn.Name = "editBtn";
+            this.editBtn.Size = new System.Drawing.Size(188, 56);
+            this.editBtn.TabIndex = 1;
+            this.editBtn.Text = "edit";
+            this.editBtn.UseVisualStyleBackColor = true;
+            this.editBtn.Click += new System.EventHandler(this.editBtn_Click);
+            // 
+            // eventsCLB
+            // 
+            this.eventsCLB.FormattingEnabled = true;
+            this.eventsCLB.Location = new System.Drawing.Point(18, 4);
+            this.eventsCLB.Name = "eventsCLB";
+            this.eventsCLB.Size = new System.Drawing.Size(679, 242);
+            this.eventsCLB.TabIndex = 0;
+            // 
+            // cancelBtn
+            // 
+            this.cancelBtn.Location = new System.Drawing.Point(219, 427);
+            this.cancelBtn.Name = "cancelBtn";
+            this.cancelBtn.Size = new System.Drawing.Size(107, 58);
+            this.cancelBtn.TabIndex = 41;
+            this.cancelBtn.Text = "Cancel";
+            this.cancelBtn.UseVisualStyleBackColor = true;
+            this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
             // MyEvents
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1054, 703);
+            this.Controls.Add(this.editPanel);
             this.Controls.Add(this.eventsPanel);
             this.Controls.Add(this.label1);
             this.Name = "MyEvents";
@@ -277,9 +272,7 @@
         private System.Windows.Forms.Panel editPanel;
         private System.Windows.Forms.ComboBox timeCB;
         private System.Windows.Forms.ComboBox locCB;
-        private System.Windows.Forms.CheckedListBox hostCLB;
         private System.Windows.Forms.ComboBox depCB;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label Time;
         private System.Windows.Forms.Label label3;
@@ -290,5 +283,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox titleTxt;
         private System.Windows.Forms.Button saveEditBtn;
+        private System.Windows.Forms.Button cancelBtn;
     }
 }

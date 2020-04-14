@@ -64,6 +64,7 @@
             // 
             this.passwordTxt.Location = new System.Drawing.Point(166, 164);
             this.passwordTxt.Name = "passwordTxt";
+            this.passwordTxt.PasswordChar = '*';
             this.passwordTxt.Size = new System.Drawing.Size(478, 22);
             this.passwordTxt.TabIndex = 3;
             // 
@@ -75,6 +76,7 @@
             this.loginBtn.TabIndex = 4;
             this.loginBtn.Text = "Login";
             this.loginBtn.UseVisualStyleBackColor = true;
+            this.loginBtn.Click += new System.EventHandler(this.loginBtn_Click);
             // 
             // LoginForm
             // 

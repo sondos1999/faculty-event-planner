@@ -21,5 +21,10 @@ namespace FacultyEventPlanner
         {
 
         }
+
+        private void loginBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

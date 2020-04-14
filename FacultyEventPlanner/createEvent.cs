@@ -112,11 +112,11 @@ namespace FacultyEventPlanner
                 return;
             }
 
-            //if(locCB.SelectedIndex > -1 || timeCB.SelectedIndex > -1 || depCB.SelectedIndex > -1)
-            //{
-            //    MessageBox.Show("Please do not leave empty fields..", "Warning");
-            //    return;
-            //}
+            if (locCB.SelectedIndex < 0 || timeCB.SelectedIndex < 0 || depCB.SelectedIndex < 0)
+            {
+                MessageBox.Show("Please do not leave empty fields..", "Warning");
+                return;
+            }
 
             try
             {
