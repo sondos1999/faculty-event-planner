@@ -83,8 +83,7 @@ delete from event where title = t;
 
 end;
 
-create or replace
-procedure Update_Event
+create or replace procedure Update_Event
 (t in event.title% TYPE, cap in event.capacity%TYPE,
 des in event.description% TYPE, ln in event.l_name% TYPE,
 st in event.ls_start_time% TYPE,
@@ -114,4 +113,23 @@ ls_date = ld,
 d_id = did
 where title = t;
 
+end;
+
+create or replace procedure Check_Password
+(user in users.user_name% TYPE,
+p in users.password% TYPE, 
+ret out number
+)
+as
+pass users.password% TYPE;
+BEGIN
+select password into pass from users where user_name = user;
+if pass = p then
+ret:=1;
+else
+ret:=0;
+end if;
+exception 
+    when no_data_found then
+    ret:=-1;
 end;

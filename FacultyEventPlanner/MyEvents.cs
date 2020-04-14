@@ -99,7 +99,7 @@ namespace FacultyEventPlanner
             getEvents.CommandType = CommandType.StoredProcedure;
             getEvents.CommandText = "GetEvents";
             getEvents.Parameters.Add("ref", OracleDbType.RefCursor, ParameterDirection.Output);
-            getEvents.Parameters.Add("hst", "HT_2000"); // TODO use logged in
+            getEvents.Parameters.Add("hst", OracleHelper.LoggedIn.user_name);
             OracleDataReader eventsDR = getEvents.ExecuteReader();
 
             while (eventsDR.Read())
@@ -140,7 +140,7 @@ namespace FacultyEventPlanner
             getEvents.CommandType = CommandType.StoredProcedure;
             getEvents.CommandText = "GetEvents";
             getEvents.Parameters.Add("ref", OracleDbType.RefCursor, ParameterDirection.Output);
-            getEvents.Parameters.Add("hst", "HT_2000"); // TODO use logged in
+            getEvents.Parameters.Add("hst", OracleHelper.LoggedIn.user_name); 
             OracleDataReader eventsDR = getEvents.ExecuteReader();
 
             while (eventsDR.Read())
@@ -185,7 +185,7 @@ namespace FacultyEventPlanner
             getEvents.CommandType = CommandType.StoredProcedure;
             getEvents.CommandText = "GetEvents";
             getEvents.Parameters.Add("ref", OracleDbType.RefCursor, ParameterDirection.Output);
-            getEvents.Parameters.Add("hst", "HT_2000"); // TODO use logged in
+            getEvents.Parameters.Add("hst", OracleHelper.LoggedIn.user_name);
             OracleDataReader eventsDR = getEvents.ExecuteReader();
             
             while (eventsDR.Read())

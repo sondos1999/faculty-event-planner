@@ -12,6 +12,11 @@ namespace FacultyEventPlanner
     {
         private static OracleConnection conn;
         static string constr = "Data Source=orcl; User Id=hr;Password=hr;";
+        public struct user
+        {
+            public string user_name, fName, lName, e_mail, did, jid;
+        }
+        public static user LoggedIn;
         public static OracleConnection getConnection()
         {
             if (conn == null)

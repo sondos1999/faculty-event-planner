@@ -63,6 +63,8 @@ namespace FacultyEventPlanner
             userDR = user.ExecuteReader();
             while (userDR.Read())
             {
+                if (userDR[2].ToString().CompareTo(OracleHelper.LoggedIn.user_name) == 0)
+                    continue;
                 hostCLB.Items.Add(userDR[0]+" "+userDR[1]);
                 usernames[userDR[0] + " " + userDR[1]] = userDR[2].ToString();
             }
@@ -147,7 +149,7 @@ namespace FacultyEventPlanner
             insEvent.Parameters.Add("et", endTimes[tIndx].ToString());
             insEvent.Parameters.Add("ld", dates[tIndx].ToString().ToUpper());
             insEvent.Parameters.Add("did", dids[depCB.SelectedIndex]);
-            insEvent.Parameters.Add("hst", "HT_2000"); //TODO change to logged in user
+            insEvent.Parameters.Add("hst", OracleHelper.LoggedIn.user_name);
             insEvent.ExecuteNonQuery();
 
             //insert hosts
