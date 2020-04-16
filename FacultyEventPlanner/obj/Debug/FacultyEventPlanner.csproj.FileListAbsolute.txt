@@ -13,3 +13,6 @@ F:\Code\Projects\FacultyEventPlanner\FacultyEventPlanner\FacultyEventPlanner\obj
 F:\Code\Projects\FacultyEventPlanner\FacultyEventPlanner\FacultyEventPlanner\obj\Debug\FacultyEventPlanner.csproj.CopyComplete
 F:\Code\Projects\FacultyEventPlanner\FacultyEventPlanner\FacultyEventPlanner\obj\Debug\FacultyEventPlanner.exe
 F:\Code\Projects\FacultyEventPlanner\FacultyEventPlanner\FacultyEventPlanner\obj\Debug\FacultyEventPlanner.pdb
+C:\Users\sondos\Documents\GitHub\faculty-event-planner\FacultyEventPlanner\bin\Debug\FacultyEventPlanner.exe.config
+C:\Users\sondos\Documents\GitHub\faculty-event-planner\FacultyEventPlanner\obj\Debug\FacultyEventPlanner.exe
+C:\Users\sondos\Documents\GitHub\faculty-event-planner\FacultyEventPlanner\obj\Debug\FacultyEventPlanner.pdb
